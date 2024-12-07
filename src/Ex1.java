@@ -2,21 +2,9 @@ package assignments.ex1;
 
 
 public class Ex1 {
-    /**
-     * Convert the given number (num) to a decimal representation (as int).
-     * If the given number is not in a valid format returns -1.
-     * @param num a String representing a number in basis [2,16]
-     * @return
-     */
-    public static int number2Int(String num) {
-        int ans = -1;
-        // add your code here
 
-        ////////////////////
-        return ans;
-    }
-    /**
-     * This static function checks if the given String (g) is in a valid "number" format.
+
+       // This static function checks if the given String (g) is in a valid "number" format.
     //We receive a string and first check if it is null or empty.
     // If it is, we return false. Then, we locate the index of 'b' in the string and ensure that there is exactly one occurrence of 'b.'
     // If there are multiple or none, we return false. Next, we split the string into two parts: the section before 'b' (numberPart) and the section after 'b' ( basePart).
@@ -29,7 +17,7 @@ public class Ex1 {
 
 
 
-     public static boolean isNumber(String a) {
+    public static boolean isNumber(String a) {
         boolean ans = true;
         if(a == null|| a.isEmpty()) return false; //If string a is null or empty, return false.
 
@@ -56,21 +44,58 @@ public class Ex1 {
 
         for (char c : numberPart.toCharArray()) {
             if (Character.isDigit(c)) {
-                if (c - '0' >= base) ;
-                {
-                    ans = false;
-                    break;
-                }
-            } else {
-                ans = false;
-                break;
-            }
+                if (c - '0' >= base) return false; //Digit is too large for the base
+            } else if (c>= 'A' && c<= 'F') {
+                if (c - 'A' + 10 >= base) return false; //Letter is too large for the base
+            } else { return false; //invalid character
         }
 
 
-
         return ans;
-}
+    }
+
+
+
+//  * Convert the given number (num) to a decimal representation (as int).
+    //Using a valid string (validated by isNumber), we locate the index of 'b' and split the string into two parts: the section before 'b' (numberPart) and the section after 'b' (basePart).
+        // We determine the base as an integer from the basePart, either by converting a digit or calculating the value of a letter between 'A' and 'F.'
+        // Starting with a total of 0, we iterate through each character in the numberPart, converting it to its numeric vale and updating the total by multiplying the current total by the base and adding the numeric value.
+        // After processing all the characters, the total represents the number in decimal form, which is returned.
+        // If any unexpected condition arises during conversion, -1 is returned.
+    public static int number2Int(String a) {
+        int ans = -1;
+        if (!isNumber(a)) {
+            return ans;
+        }
+        int bIndex = a.indexOf('b');
+        String numberPart = a.substring(0, bIndex);
+        String basePart = a.substring(bIndex + 1);
+
+        int base;
+        char charBase = basePart.charAt(0); //Single character for base
+        if (Character.isDigit(charBase)) {
+            base = charBase - '0'; //Convert digit to int
+        } else {
+            base = charBase - 'A' + 10; //Convert letter to int
+        }
+        int total = 0;
+        for (char c : numberPart.toCharArray()) { //Loop through each value in the number part
+            int digitValue;
+            if (Character.isDigit(c)) {
+                digitValue = c - '0'; //Convert digit to its numeric value
+            } else {
+                digitValue = c - 'A' + 10; //Convert letter to its numeric value
+            }
+            total = total * base + digitValue;
+        }
+        ans = total;
+        return ans;
+    }
+            }
+
+
+
+
 
 
     /**
@@ -80,14 +105,40 @@ public class Ex1 {
      * @param num the natural number (include 0).
      * @param base the basis [2,16]
      * @return a String representing a number (in base) equals to num, or an empty String (in case of wrong input).
-     */
+     */ // Verification: First must check if int is a natural number. if not, return ans. same base check for isNumber should be used here to verify
+    //base given. if not valid, return ans.
+    //calculation: divide the num by base in mod! the remainder becomes the digit until we get to zero. the numbers are added to the left
+    //return string of the num + b + base
+
+
+
     public static String int2Number(int num, int base) {
         String ans = "";
-        // add your code here
+        if (num < 0 || base < 2 || base > 16) {
+            return ans;
+        } //Checking validity of input and returning empty string if invalid.
+        if (num ==0) {
+            return "0b" + base;
+        }
 
-        ////////////////////
-        return ans;
+        while (num > 0) {
+
+        int remainder = num % base;
+        char digit;
+
+        if (remainder < 10) {
+            digit = (char) ('0' + remainder); //Converts to '0'-'9'
+        }
+        else {
+            digit = (char) ('A' + (remainder - 10));//Converts to 'A'-'F'
+        }
+        ans = digit + ans;
+        num = num / base;
     }
+    return ans + "b" + base;
+        }
+
+
 
     /**
      * Checks if the two numbers have the same value.
@@ -98,6 +149,8 @@ public class Ex1 {
     public static boolean equals(String n1, String n2) {
         boolean ans = true;
         // add your code here
+        // Set n1 and n2 as the answers from earlier.
+        // if (n1.equals(n2)) return ans
 
         ////////////////////
         return ans;
