@@ -47,7 +47,7 @@ public class Ex1 {
                 if (c - '0' >= base) return false; //Digit is too large for the base
             } else if (c>= 'A' && c<= 'F') {
                 if (c - 'A' + 10 >= base) return false; //Letter is too large for the base
-            } else { return false; //invalid character
+            } else { return false;} //invalid character
         }
 
 
@@ -132,7 +132,7 @@ public class Ex1 {
         else {
             digit = (char) ('A' + (remainder - 10));//Converts to 'A'-'F'
         }
-        ans = digit + ans;
+        ans = digit + ans;//Digits added to the left because it is the LSB.
         num = num / base;
     }
     return ans + "b" + base;
@@ -144,16 +144,21 @@ public class Ex1 {
      * Checks if the two numbers have the same value.
      * @param n1 first number
      * @param n2 second number
-     * @return true iff the two numbers have the same values.
+     * @return true if the two numbers have the same values.
      */
     public static boolean equals(String n1, String n2) {
         boolean ans = true;
-        // add your code here
-        // Set n1 and n2 as the answers from earlier.
-        // if (n1.equals(n2)) return ans
+        int value1 = number2Int(n1);
+        int value2 = number2Int(n2); //converting strings to int
 
-        ////////////////////
-        return ans;
+        if (value1 == -1 || value2 == -1) {
+            return ans = false; //Ans is set to false because value is invalid
+        } else if (value1 != value2) {
+            return ans = false;//Ans is false because the values aren't equal.
+        }
+        return value1 == value2; //Checks if the values of the two strings are equal.
+        }
+
     }
 
     /**
@@ -166,9 +171,16 @@ public class Ex1 {
      */
     public static int maxIndex(String[] arr) {
         int ans = 0;
-        // add your code here
+        int maxValue = -1;
 
-        ////////////////////
-        return ans;
+        for (int i = 0; i < arr.length; i++) {
+            int currentValue = number2Int(arr[i]);//Convert number to integer
+            if (currentValue > maxValue) {
+                maxValue = currentValue;
+                ans = i;//Updating max value and its index
+            }
+        }
+        return ans;//Return the index of the largest number
     }
-}
+
+
