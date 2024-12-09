@@ -1,4 +1,4 @@
-package assignments.ex1;
+package assignments.Ex1;
 
 
 public class Ex1 {
@@ -91,7 +91,7 @@ public class Ex1 {
         ans = total;
         return ans;
     }
-            }
+
 
 
 
@@ -159,7 +159,7 @@ public class Ex1 {
         return value1 == value2; //Checks if the values of the two strings are equal.
         }
 
-    }
+
 
     /**
      * This static function search for the array index with the largest number (in value).
@@ -181,6 +181,7 @@ public class Ex1 {
             }
         }
         return ans;//Return the index of the largest number
+    }
     }
 
 

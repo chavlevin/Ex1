@@ -1,4 +1,5 @@
-public class Ex1Test {package assignments.ex1;
+package assignments.Ex1;
+
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -34,6 +35,19 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
                 assertFalse(not_ok);
             }
         }
+
+        @Test
+        void testIsNumber() {
+            assertTrue (Ex1.isNumber("123bA"));//This is a valid number
+            assertFalse (Ex1.isNumber("b2"));//Invalid number part
+            assertFalse (Ex1.isNumber("123b"));//Invalid base
+
+
+
+        }
+
+
+
         @Test
         void int2NumberTest() {
             // implement this test
@@ -45,4 +59,4 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
         // Add additional test functions - test as much as you can.
     }
-}
+
