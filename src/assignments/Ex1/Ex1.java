@@ -4,17 +4,6 @@ package assignments.Ex1;
 public class Ex1 {
 
 
-       // This static function checks if the given String (g) is in a valid "number" format.
-    //We receive a string and first check if it is null or empty.
-    // If it is, we return false. Then, we locate the index of 'b' in the string and ensure that there is exactly one occurrence of 'b.'
-    // If there are multiple or none, we return false. Next, we split the string into two parts: the section before 'b' (numberPart) and the section after 'b' ( basePart).
-    // The basePart must contain exactly one character because bases larger than 10 are represented as letters.
-    // If this condition is not met, we return false. We then convert the basePart into an integer.
-    // If it is a digit, we subtract '0' to get its numeric value, and if it is a letter between 'A' and 'F,' we calculate its value by subtracting 'A' and adding 10.
-    // If the base is less than 2 or greater than 16, we return false. Next, we check the numberPart, ensuring it is not empty.
-    // Each character is analyzed: if it is a digit, we confirm that its value is less than the base; otherwise, we return false.
-    // If a character does not meet these conditions, we set the ans to false and exit the loop. Finally, we return the value of ans.
-
 
 
     public static boolean isNumber(String a) {
@@ -71,12 +60,7 @@ public class Ex1 {
 
 
 
-//  * Convert the given number (num) to a decimal representation (as int).
-    //Using a valid string (validated by isNumber), we locate the index of 'b' and split the string into two parts: the section before 'b' (numberPart) and the section after 'b' (basePart).
-        // We determine the base as an integer from the basePart, either by converting a digit or calculating the value of a letter between 'A' and 'F.'
-        // Starting with a total of 0, we iterate through each character in the numberPart, converting it to its numeric vale and updating the total by multiplying the current total by the base and adding the numeric value.
-        // After processing all the characters, the total represents the number in decimal form, which is returned.
-        // If any unexpected condition arises during conversion, -1 is returned.
+
     public static int number2Int(String a) {
         int ans = -1;
 
@@ -126,17 +110,7 @@ public class Ex1 {
 
 
 
-    /**
-     * Calculate the number representation (in basis base)
-     * of the given natural number (represented as an integer).
-     * If num<0 or base is not in [2,16] the function should return "" (the empty String).
-     * @param num the natural number (include 0).
-     * @param base the basis [2,16]
-     * @return a String representing a number (in base) equals to num, or an empty String (in case of wrong input).
-     */ // Verification: First must check if int is a natural number. if not, return ans. same base check for isNumber should be used here to verify
-    //base given. if not valid, return ans.
-    //calculation: divide the num by base in mod! the remainder becomes the digit until we get to zero. the numbers are added to the left
-    //return string of the num + b + base
+
 
 
 
@@ -183,12 +157,6 @@ public class Ex1 {
 
 
 
-    /**
-     * Checks if the two numbers have the same value.
-     * @param n1 first number
-     * @param n2 second number
-     * @return true if the two numbers have the same values.
-     */
     public static boolean equals(String n1, String n2) {
         boolean ans = true;
         int value1 = number2Int(n1);
@@ -204,14 +172,6 @@ public class Ex1 {
 
 
 
-    /**
-     * This static function search for the array index with the largest number (in value).
-     * In case there are more than one maximum - returns the first index.
-     * Note: you can assume that the array is not null and is not empty, yet it may contain null or none-valid numbers (with value -1).
-     * @param arr an array of numbers
-     * @return the index in the array in with the largest number (in value).
-     *
-     */
     public static int maxIndex(String[] arr) {
         int ans = 0;
         int maxValue = -1;
