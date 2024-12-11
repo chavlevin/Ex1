@@ -21,8 +21,23 @@ public class Ex1 {
         boolean ans = true;
         if(a == null|| a.isEmpty()) return false; //If string a is null or empty, return false.
 
+
+        boolean allDigits = true; //Checks if string a consists of only digits.
+        for (int i =0; i<a.length(); i++) {
+            if (!Character.isDigit(a.charAt(i))) {
+                allDigits = false;
+                break;
+            }
+        }
+        if (allDigits) {
+            System.out.println(a);//Print the number if it's all digits
+            return true;
+        }
+
+
         int bIndex = a.indexOf('b');
         if (bIndex == -1 || a.lastIndexOf('b') != bIndex) return false; // Find the index of 'b,' ensuring that b even exists and that there is only one.
+
 
         String numberPart = a.substring(0,bIndex);
         String basePart = a.substring(bIndex + 1); //Splitting the string into number and base part
@@ -64,6 +79,19 @@ public class Ex1 {
         // If any unexpected condition arises during conversion, -1 is returned.
     public static int number2Int(String a) {
         int ans = -1;
+
+        boolean allDigits = true; //Checks if string a consists of only digits.
+        for (int i =0; i<a.length(); i++) {
+            if (!Character.isDigit(a.charAt(i))) {
+                allDigits = false;
+                break;
+            }
+        }
+        if (allDigits) {
+            return Integer.parseInt(a);//Converts string of digits to integer
+        }
+
+
         if (!isNumber(a)) {
             return ans;
         }
@@ -118,13 +146,18 @@ public class Ex1 {
             return ans;
         } //Checking validity of input and returning empty string if invalid.
         if (num ==0) {
-            return "0b" + base;
+            return "0b" + convertBaseToChar(base);
         }
+
+        StringBuilder sb = new StringBuilder();//String builder to create num
+
 
         while (num > 0) {
 
-        int remainder = num % base;
-        char digit;
+            int remainder = num % base;
+            char digit;
+
+
 
         if (remainder < 10) {
             digit = (char) ('0' + remainder); //Converts to '0'-'9'
@@ -132,11 +165,21 @@ public class Ex1 {
         else {
             digit = (char) ('A' + (remainder - 10));//Converts to 'A'-'F'
         }
-        ans = digit + ans;//Digits added to the left because it is the LSB.
+
+        sb.insert(0, digit);
         num = num / base;
     }
-    return ans + "b" + base;
+        ans = sb.toString() + "b" + convertBaseToChar(base);
+        return ans; }
+
+    private static String convertBaseToChar(int base) {
+        if (base < 10) {
+            return Integer.toString(base); }
+        else {
+            return Character.toString((char)('A' + (base -10)));
         }
+    }
+
 
 
 

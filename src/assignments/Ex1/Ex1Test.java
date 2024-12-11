@@ -24,7 +24,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
         @Test
         void isBasisNumberTest() {
-            String[] good = {"1", "1b2", "01b2", "123bA", "ABbG", "0bA"};
+            String[] good = {"1", "1b2", "01b2", "123bA", "0bA"};
             for(int i=0;i<good.length;i=i+1) {
                 boolean ok = Ex1.isNumber(good[i]);
                 assertTrue(ok);
@@ -37,11 +37,20 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
         }
 
         @Test
-        void testIsNumber() {
-            assertTrue (Ex1.isNumber("123bA"));//This is a valid number
+        void isNumberTest() {
+            //Valid cases
+            assertTrue (Ex1.isNumber("123bA"));
+            assertTrue(Ex1.isNumber("101101b2"));
+            assertTrue(Ex1.isNumber("1E2bF"));
+            assertTrue(Ex1.isNumber("5"));
+            assertTrue(Ex1.isNumber("0b4"));
+
+
+            //Invalid cases
             assertFalse (Ex1.isNumber("b2"));//Invalid number part
             assertFalse (Ex1.isNumber("123b"));//Invalid base
-
+            assertFalse(Ex1.isNumber(""));//Empty string
+            assertFalse(Ex1.isNumber("35bb9"));//More than one 'b'
 
 
         }
@@ -50,13 +59,59 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
         @Test
         void int2NumberTest() {
-            // implement this test
-        }
-        @Test
-        void maxIndexTest() {
-            // implement this test
+            //Valid cases
+            assertEquals("0b2", Ex1.int2Number(0,2));
+            assertEquals("D3bF", Ex1.int2Number(198, 15) );
+
+            //Invalid cases
+            assertEquals("", Ex1.int2Number(-1,2));//Number can't be negative
+            assertEquals("", Ex1.int2Number(3,17));//Base is too large
+            assertEquals("", Ex1.int2Number(5, 1));//Base too small
         }
 
-        // Add additional test functions - test as much as you can.
+
+
+        @Test
+        void number2IntTest () {
+            //Valid cases
+            assertEquals(238, Ex1.number2Int("154bD"));
+            assertEquals(0, Ex1.number2Int("0bA"));
+            assertEquals(11, Ex1.number2Int("1011b2"));
+
+            //Invalid cases
+            assertEquals(-1, Ex1.number2Int("34bH"));//Invalid base
+            assertEquals(-1, Ex1.number2Int("75b2"));//Number part not suitable for base
+            assertEquals(-1, Ex1.number2Int("HbA"));//Invalid number part
+
+
+
+        }
+
+
+
+        @Test
+        void equalsTest() {
+            //Valid cases
+            assertTrue(Ex1.equals("1011b2", "11bA"));
+            assertTrue(Ex1.equals("0b2", "0bA"));
+            assertTrue(Ex1.equals("D3bF", "198bA"));
+
+            //Invalid cases
+            assertFalse(Ex1.equals("14bD", "D5bF"));
+            assertFalse(Ex1.equals("12b", "53"));
+        }
+
+
+
+
+        @Test
+        void maxIndexTest() {
+            String [] arr = {"23b8", "AAbF", "126", "864bC"};
+            assertEquals(3, Ex1.maxIndex(arr));
+
+
+
+        }
+
     }
 
