@@ -5,7 +5,7 @@ public class Ex1 {
 
 
 
-
+//This function ensures the string input is valid.
     public static boolean isNumber(String a) {
         boolean ans = true;
         if(a == null|| a.isEmpty()) return false; //If string a is null or empty, return false.
@@ -60,7 +60,7 @@ public class Ex1 {
 
 
 
-
+//This function converts a string base number to a decimal integer.
     public static int number2Int(String a) {
         int ans = -1;
 
@@ -107,13 +107,7 @@ public class Ex1 {
 
 
 
-
-
-
-
-
-
-
+//This function receives a decimal integer and a base and returns a string with the converted value.
     public static String int2Number(int num, int base) {
         String ans = "";
         if (num < 0 || base < 2 || base > 16) {
@@ -156,7 +150,7 @@ public class Ex1 {
 
 
 
-
+//This function checks the equality of the values of two string base numbers.
     public static boolean equals(String n1, String n2) {
         boolean ans = true;
         int value1 = number2Int(n1);
@@ -171,7 +165,7 @@ public class Ex1 {
         }
 
 
-
+//This function locates the index of the maximum number in a string
     public static int maxIndex(String[] arr) {
         int ans = 0;
         int maxValue = -1;
